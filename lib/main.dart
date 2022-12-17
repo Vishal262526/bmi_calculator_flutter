@@ -64,13 +64,19 @@ class _HomeState extends State<Home> {
                           )
                         ],
                       ),
-                      color: Color(0xFF6D67E4),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Color(0xFF6D67E4),
+                      ),
                     ),
                   ),
                   Expanded(
                     child: Container(
                       margin: EdgeInsets.all(16.0),
-                      color: Color(0xFF6D67E4),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Color(0xFF6D67E4),
+                      ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -98,7 +104,10 @@ class _HomeState extends State<Home> {
             flex: 1,
             child: Container(
                 margin: EdgeInsets.all(16.0),
-                color: Color(0xFF6D67E4),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color(0xFF6D67E4),
+                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -109,15 +118,17 @@ class _HomeState extends State<Home> {
                           color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
+                    SizedBox(height: 10,),
+                    Text('${currentValue.round()}', style: TextStyle(fontSize: 20, color: Colors.white),),
                     SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Slider(
                       activeColor: Colors.white,
                       inactiveColor: Colors.white,
                       value: currentValue,
                       min: 0,
-                      max: 100,
+                      max: 300,
                       onChanged: (double value) {
                         setState(() {
                           currentValue = value;
@@ -174,13 +185,19 @@ class _HomeState extends State<Home> {
                           )
                         ],
                       ),
-                      color: Color(0xFF6D67E4),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Color(0xFF6D67E4),
+                      ),
                     ),
                   ),
                   Expanded(
                     child: Container(
                       margin: EdgeInsets.all(16.0),
-                      color: Color(0xFF6D67E4),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Color(0xFF6D67E4),
+                      ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
