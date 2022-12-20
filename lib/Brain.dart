@@ -3,12 +3,10 @@ class Brain {
   double _height = 10;
   int _weight = 30;
 
-
   // For age
   void addAge() => _age++;
   void reduceAge() => _age--;
   int getAge() => _age;
-
 
   // For weight
   void addWeight() => _weight++;
@@ -18,8 +16,9 @@ class Brain {
   double getHeight() => _height;
   double onHeightChange(double height) => _height = height;
 
-
-  String calculatoeBMI(){
+  String calculatoeBMI() {
     return "";
   }
+
+  void toggleGenderCard(int activeColor) {}
 }

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import '../Brain.dart';
 import '../components/card.dart';
@@ -9,6 +11,13 @@ Brain brain = Brain();
 const Color kBgColor = Color(0xFF453C67);
 const Color kFgColor = Color(0xFF6D67E4);
 const Color kWhite = Colors.white;
+const Color activeCardColor = Color(0xFF6D67E4);
+const Color inactiveCardColor = Color.fromARGB(255, 90, 85, 181);
+
+enum Gender {
+  male,
+  female,
+}
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -18,6 +27,22 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  // Color maleActiveCardColor = inactiveCardColor;
+  // Color femaleActiveCardColor = inactiveCardColor;
+
+  // // 0 = male , 1 = female
+  // void toggleGenderColor(int activeColor) {
+  //   if (activeColor == 0) {
+  //     maleActiveCardColor = activeCardColor;
+  //     femaleActiveCardColor = inactiveCardColor;
+  //   } else {
+  //     femaleActiveCardColor = activeCardColor;
+  //     maleActiveCardColor = inactiveCardColor;
+  //   }
+  // }
+
+  Gender? selectedGender;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,20 +54,38 @@ class _HomeState extends State<Home> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(
-                  child: ReuseableCard(
-                    color: kFgColor,
-                    childWidget: IconContent(
-                      icon: FontAwesomeIcons.mars,
-                      label: 'Male',
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedGender = Gender.male;
+                      });
+                    },
+                    child: ReuseableCard(
+                      color: selectedGender == Gender.male
+                          ? activeCardColor
+                          : inactiveCardColor,
+                      childWidget: const IconContent(
+                        icon: FontAwesomeIcons.mars,
+                        label: 'Male',
+                      ),
                     ),
                   ),
                 ),
                 Expanded(
-                  child: ReuseableCard(
-                    color: kFgColor,
-                    childWidget: IconContent(
-                      icon: FontAwesomeIcons.person,
-                      label: 'Female',
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedGender = Gender.female;
+                      });
+                    },
+                    child: ReuseableCard(
+                      color: selectedGender == Gender.female
+                          ? activeCardColor
+                          : inactiveCardColor,
+                      childWidget: const IconContent(
+                        icon: FontAwesomeIcons.person,
+                        label: 'Female',
+                      ),
                     ),
                   ),
                 ),
@@ -60,21 +103,21 @@ class _HomeState extends State<Home> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Height (cm)',
                       style: TextStyle(
                           fontSize: 25,
                           color: kWhite,
                           fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(
                       '${brain.getHeight().round()}',
-                      style: TextStyle(fontSize: 20, color: Colors.white),
+                      style: const TextStyle(fontSize: 20, color: Colors.white),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Slider(
@@ -108,21 +151,21 @@ class _HomeState extends State<Home> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             "Weight (kg)",
                             style: TextStyle(
                                 color: kWhite,
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Text(
                             '${brain.getWeight()}',
                             style: TextStyle(fontSize: 40, color: Colors.white),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Row(
@@ -136,11 +179,11 @@ class _HomeState extends State<Home> {
                                 },
                                 child: Container(
                                   color: kWhite,
-                                  padding: EdgeInsets.all(5.0),
-                                  child: Icon(Icons.add),
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: const Icon(Icons.add),
                                 ),
                               ),
-                              SizedBox(width: 15),
+                              const SizedBox(width: 15),
                               InkWell(
                                 onTap: () {
                                   setState(() {
@@ -150,7 +193,7 @@ class _HomeState extends State<Home> {
                                 child: Container(
                                   color: kWhite,
                                   padding: EdgeInsets.all(5.0),
-                                  child: Icon(Icons.exposure_minus_1),
+                                  child: const Icon(Icons.exposure_minus_1),
                                 ),
                               )
                             ],
