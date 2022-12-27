@@ -54,13 +54,13 @@ class _HomeState extends State<Home> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedGender = Gender.male;
-                      });
-                    },
+
                     child: ReuseableCard(
+                      onPress: (){
+                        setState(() {
+                          selectedGender = Gender.male;
+                        });
+                      },
                       color: selectedGender == Gender.male
                           ? activeCardColor
                           : inactiveCardColor,
@@ -69,16 +69,14 @@ class _HomeState extends State<Home> {
                         label: 'Male',
                       ),
                     ),
-                  ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child:  ReuseableCard(
+                    onPress: (){
                       setState(() {
                         selectedGender = Gender.female;
                       });
                     },
-                    child: ReuseableCard(
                       color: selectedGender == Gender.female
                           ? activeCardColor
                           : inactiveCardColor,
@@ -87,7 +85,7 @@ class _HomeState extends State<Home> {
                         label: 'Female',
                       ),
                     ),
-                  ),
+
                 ),
               ],
             ),
@@ -120,17 +118,25 @@ class _HomeState extends State<Home> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Slider(
-                      activeColor: kWhite,
-                      inactiveColor: kWhite,
-                      value: brain.getHeight(),
-                      min: 0,
-                      max: 300,
-                      onChanged: (double newHeight) {
-                        setState(() {
-                          brain.onHeightChange(newHeight);
-                        });
-                      },
+                    SliderTheme(
+                      data: SliderTheme.of(context).copyWith(
+                          thumbShape:
+                              RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                          overlayShape: RoundSliderOverlayShape(
+                            overlayRadius: 20,
+                          )),
+                      child: Slider(
+                        activeColor: kWhite,
+                        inactiveColor: kWhite,
+                        value: brain.getHeight(),
+                        min: 0,
+                        max: 300,
+                        onChanged: (double newHeight) {
+                          setState(() {
+                            brain.onHeightChange(newHeight);
+                          });
+                        },
+                      ),
                     ),
                   ],
                 )),
